@@ -6,7 +6,7 @@ ENV PHALCON_VERSION=3.0.2
 # Compile Phalcon
 RUN set -xe && \
         curl -LO https://github.com/phalcon/cphalcon/archive/v${PHALCON_VERSION}.tar.gz && \
-        tar xzf v${PHALCON_VERSION}.tar.gz && cd cphalcon-${PHALCON_VERSION}/build && ./install && \
+        tar xzf v${PHALCON_VERSION}.tar.gz && cd cphalcon-${PHALCON_VERSION}/build && export CFLAGS="-O2 -g" && ./install && \
         echo "extension=phalcon.so" > /usr/local/etc/php/conf.d/phalcon.ini && \
         cd ../.. && rm -rf v${PHALCON_VERSION}.tar.gz cphalcon-${PHALCON_VERSION} && \
         # Insall Phalcon Devtools, see https://github.com/phalcon/phalcon-devtools/
